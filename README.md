@@ -89,5 +89,10 @@ An example command for running the container and injecting some files:
       -v /branding/ios.png:/usr/share/nginx/html/icon_180x180.png \¬
       signalen/frontend¬
 
+## Docs
+
+- [ADR](./docs/adr)
+- [Schemas](/./docs/schemas)
+
 ## Thanks to
 <a href="http://browserstack.com/"><img src="src/images/browserstack-logo-600x315.png" height="130" alt="BrowserStack Logo" /></a>
