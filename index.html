@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Signals-frontend by Amsterdam</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Signals-frontend</h1>
+        <p>Frontend of the SIA (Signalen Informatievoorziening Amsterdam)</p>
+
+        <p class="view"><a href="https://github.com/Amsterdam/signals-frontend">View the Project on GitHub <small>Amsterdam/signals-frontend</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/Amsterdam/signals-frontend/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Amsterdam/signals-frontend/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Amsterdam/signals-frontend">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="signalen" class="anchor" href="#signalen" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Signalen</h1>
+<p>This project is based on the react boilerplate that was adapted for the needs of the municipality of Amsterdam.
+See <a href="https://github.com/Amsterdam/react-boilerplate.git">https://github.com/Amsterdam/react-boilerplate.git</a> for more information on the react boilerplate</p>
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+<ul>
+<li>npm &gt;= 6.11</li>
+<li>node 12.18</li>
+</ul>
+<p>This project relies on the<a href="https://www.npmjs.com/package/leaflet-headless"> <code>leaflet-headless</code></a> package. On OSX, you'll need to have <a href="https://formulae.brew.sh/formula/cairo"><code>cairo</code></a>, <a href="https://formulae.brew.sh/formula/pango"><code>pango</code></a> and <a href="https://formulae.brew.sh/formula/cmake"><code>cmake</code></a> installed.</p>
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+<ul>
+<li>npm install</li>
+</ul>
+<h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
+<p>Configuration for theming, map and API endpoint URLs is defined in
+<code>environment.conf.json</code>.</p>
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
+<p>To overwrite some configuration for development purposes you can define them in
+<code>environment.conf.development.json</code>. This file is ignored by git.</p>
+<p>The SPA will run over HTTP on <code>localhost</code> at port <code>3001</code>. The port can be configured by setting the environment variable <code>PORT</code>.</p>
+<pre><code>npm start
+
+PORT=8000 npm start
+</code></pre>
+<p>Do note that the application uses an external authentication service that does not accept any port. The whitelisted ports are <code>3000</code> and <code>3001</code></p>
+<h3>
+<a id="https" class="anchor" href="#https" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTTPS</h3>
+<p>The application's production build uses a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">serviceworker</a> that is configured through the Webpack Offline plugin (see <a href="./internals/webpack/webpack.prod.babel.js">webpack config</a>) and is installed in <a href="./src/app.js">app.js</a>.</p>
+<p>To run the application with the production code and have the serviceworker available, the site needs to be run over HTTPS. This can be accomplished by running</p>
+<pre><code>HTTPS=true npm run start:prod
+</code></pre>
+<h2>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h2>
+<p>By default, the unit test generates a coverage report (thresholds are set in <a href="./jest.config.js">jest.config.js</a>).</p>
+<p>Running all tests and generate the coverage report:</p>
+<pre><code>npm test
+</code></pre>
+<h2>
+<a id="deployment" class="anchor" href="#deployment" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Deployment</h2>
+<p>When deploying the docker container, there are some files you can overwrite for
+branding purposes.</p>
+<ul>
+<li>
+<code>environment.conf.json</code> with configuration for theming and endpoint URLs.</li>
+<li>The logo, as defined by <code>logo.url</code> in <code>environment.conf.json</code>.</li>
+<li>
+<code>favicon.png</code> the favicon, needs to be a PNG.</li>
+<li>
+<code>manifest.json</code> with configuration for the PWA.</li>
+<li>
+<code>icon_...x....png</code> the icons for the PWA in various sizes, need to be PNGs.</li>
+</ul>
+<p>The logo displayed on the website is defined by the <code>logo.url</code> parameter in
+<code>environment.conf.json</code>. This can be a remote URL or a local file path. Define
+for instance <code>/logo.svg</code> and you can inject your own <code>logo.svg</code> when starting
+the docker container.</p>
+<p>The <code>manifest.json</code> file for the PWA is generated by webpack, but you can
+overwrite it with your own configuration. This file also defines some icons,
+which, in turn, can be injected into the container as well.</p>
+<p>There is an icon for android of 192 x 192 pixels in size, defined in
+<code>manifest.json</code>. For iOS there's an icon of 180 x 180 pixels in size, this is
+defined directly in <code>index.html</code>. All icons have to be PNGs. The icon for iOS
+must not contain transparency.</p>
+<p>See also
+<a href="https://stackoverflow.com/questions/2997437/what-size-should-apple-touch-icon-png-be-for-ipad-and-iphone?answertab=votes#tab-top">https://stackoverflow.com/questions/2997437/what-size-should-apple-touch-icon-png-be-for-ipad-and-iphone?answertab=votes#tab-top</a>
+and
+<a href="https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html">https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html</a>.</p>
+<p>An example command for running the container and injecting some files:</p>
+<pre><code>docker run -d -p 8080:80 \¬
+  -v /branding/config.json:/environment.conf.json \¬
+  -v /branding/logo.png:/usr/share/nginx/html/logo.png \¬
+  -v /branding/favicon.png:/usr/share/nginx/html/favicon.png \¬
+  -v /branding/android.png:/usr/share/nginx/html/icon_192x192.png \¬
+  -v /branding/ios.png:/usr/share/nginx/html/icon_180x180.png \¬
+  signalen/frontend¬
+</code></pre>
+<h2>
+<a id="docs" class="anchor" href="#docs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docs</h2>
+<p><a href="https://amsterdam.github.io/signals-frontend/docs/adr">Architectural decision records</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Amsterdam">Amsterdam</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
