@@ -9,6 +9,7 @@ const TextareaInput = ({ handler, touched, value, hasError, meta, parent, getErr
     <Header meta={meta} options={validatorsOrOpts} touched={touched} hasError={hasError} getError={getError}>
       <TextArea
         placeholder={meta.placeholder}
+        id={meta.name}
         {...handler()}
         onBlur={event =>
           parent.meta.updateIncident({

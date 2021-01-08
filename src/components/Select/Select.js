@@ -15,6 +15,7 @@ const Select = forwardRef(
     {
       label,
       onChange,
+      id,
       name,
       value,
       options,
@@ -26,7 +27,7 @@ const Select = forwardRef(
     },
     ref
   ) => (
-    <AscSelect value={value} onChange={onChange} data-testid={name} label={label} name={name} ref={ref}>
+    <AscSelect id={id} value={value} onChange={onChange} data-testid={name} label={label} name={name} ref={ref}>
       {emptyOption && (
         <option key={`${name}-${emptyOption[optionKey]}`} value={emptyOption[optionValue]}>
           {emptyOption[optionName]}
@@ -67,6 +68,7 @@ const optionType = PropTypes.shape({
 
 Select.propTypes = {
   label: PropTypes.node,
+  id: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   options: PropTypes.arrayOf(optionType.isRequired).isRequired,

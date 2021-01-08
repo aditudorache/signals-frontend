@@ -23,7 +23,7 @@ const RadioInputGroup = ({ handler, touched, hasError, meta, parent, getError, v
   if (!meta?.isVisible) return null;
 
   return (
-    <Header meta={meta} options={validatorsOrOpts} touched={touched} hasError={hasError} getError={getError}>
+    <Header meta={meta} options={validatorsOrOpts} touched={touched} hasError={hasError} getError={getError} isFieldSet>
       {meta.values && isObject(meta.values) && (
         <Fragment>
           <RadioGroup name={meta.name}>

@@ -31,6 +31,7 @@ const DescriptionInput = ({
   return (
     <TextArea
       data-testid="descriptionInput"
+      id={meta.name}
       rows={meta.rows || 6}
       placeholder={meta.placeholder}
       {...handler()}

@@ -34,7 +34,7 @@ const TextArea = forwardRef(({ helpText, errorMessage, label, id, ...props }, re
         {label}
       </Label>
     )}
-    <StyledArea id={id} {...props} ref={ref} />
+    <StyledArea id={id} aria-describedby={id && `${id}-subtitle`} {...props} ref={ref} />
     {helpText && <HelpText>{helpText}</HelpText>}
     {errorMessage && <ErrorMessage message={errorMessage} />}
   </Fragment>

@@ -5,8 +5,9 @@ import Header from '../Header';
 import CategorySelect from '../CategorySelect';
 
 const CategorySelectRenderer = ({ handler, touched, hasError, meta, parent, getError, validatorsOrOpts }) =>
-  meta?.isVisible && isAuthenticated() && (
-    <Header meta={meta} options={validatorsOrOpts} touched={touched} hasError={hasError} getError={getError}>
+  meta?.isVisible &&
+  isAuthenticated() && (
+    <Header meta={meta} options={validatorsOrOpts} touched={touched} hasError={hasError} getError={getError} isFieldSet>
       <CategorySelect handler={handler} meta={meta} parent={parent} />
     </Header>
   );

@@ -51,6 +51,7 @@ const CategorySelect = ({ handler, meta, parent }) => {
       {subcategoryOptions && (
         <Select
           name={meta.name}
+          id={meta.name}
           value={value}
           onChange={handleChange}
           options={subcategoryOptions}
